@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day - Antonia</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #ffc0cb, #ffb6d9, #ff69b4, #ff1493);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+    font-family: Arial, sans-serif;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255,20,147,0.35);
+    width: 350px;
+}
+
+h1 {
+    color: #ff1493;
+    margin-top: 15px;
+    font-size: 2.2em;
+}
+
+.message {
+    margin: 10px 0 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* ❤️ INIMĂ REALĂ CU SVG */
+.heart {
+    display: flex;
+    justify-content: center;
+}
+
+.heart-svg {
+    width: 260px;
+    height: 260px;
+    animation: beat 1.6s infinite;
+    filter: drop-shadow(0 12px 30px rgba(255,20,147,0.4));
+}
+
+@keyframes beat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+button {
+    border: none;
+    padding: 10px 22px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.yes-btn {
+    background: #00b300;
+    color: white;
+}
+
+.no-btn {
+    background: #ff6b6b;
+    color: white;
+}
+
+.success-message {
+    display: none;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #ff1493;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="heart">
+        <svg class="heart-svg" viewBox="0 0 512 512">
+            <defs>
+                <clipPath id="heartClip">
+                    <path d="
+                        M256 470
+                        C256 470 20 300 20 180
+                        C20 80 120 40 190 90
+                        C230 120 256 160 256 160
+                        C256 160 282 120 322 90
+                        C392 40 492 80 492 180
+                        C492 300 256 470 256 470 Z
+                    "/>
+                </clipPath>
+            </defs>
+
+            <image
+                href="euanto.jpg"
+                width="512"
+                height="512"
+                clip-path="url(#heartClip)"
+                preserveAspectRatio="xMidYMid slice"
+            />
+        </svg>
+    </div>
+
+    <h1>Antonia!</h1>
+    <div class="message">Will you be my Valentine?</div>
+
+    <div class="buttons">
+        <button class="yes-btn" onclick="yes()">Da ✓</button>
+        <button class="no-btn" id="noBtn" onclick="move()">Nu ✗</button>
+    </div>
+
+    <div class="success-message" id="success">
+        💕 Te iubesc enorm! 💕
+    </div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const success = document.getElementById("success");
+let fixed = false;
+
+function move() {
+    if (!fixed) {
+        noBtn.style.position = "fixed";
+        fixed = true;
+    }
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+function yes() {
+    noBtn.style.display = "none";
+    success.style.display = "block";
+    document.querySelector(".message").textContent = "Știam eu 🥰";
+}
+</script>
+
+</body>
+</html>
